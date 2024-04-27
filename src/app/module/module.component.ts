@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ModuleModule } from './module.module';
 import { ModuleService } from './module.service';
+import { Module } from './module';
 
 @Component({
   selector: 'app-module',
@@ -9,7 +9,7 @@ import { ModuleService } from './module.service';
 })
 export class ModuleComponent {
 
-  modules:ModuleModule[] =[];
+  modules:Module[] =[];
 
   afficherFormulaire = false;
   moduleSelectionner :any;
@@ -22,7 +22,7 @@ ngOnInit(){
 }  
 
 getModules(){
-  this.moduleService.getModules().subscribe((data:ModuleModule[])=>{
+  this.moduleService.getModules().subscribe((data:Module[])=>{
     this.modules =data;
     console.log("Get modules Ok !"+this.modules);
     

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ModuleModule } from './module.module';
+import { Module } from './module';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class ModuleService {
   constructor(private http:HttpClient) { }
 
   getModules(){
-   return this.http.get<ModuleModule[]>(this.API_URL+this.ENDPOINT_Modules);
+   return this.http.get<Module[]>(this.API_URL+this.ENDPOINT_Modules);
   }
 
 

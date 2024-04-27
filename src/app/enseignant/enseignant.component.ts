@@ -1,7 +1,7 @@
 import { Component ,ViewChild} from '@angular/core';
 import { ModalComponent } from '../shared/componants/modal/modal.component';
 import { EnseignantService } from './enseignant.service';
-import { EnseignantModule } from './enseignant.module';
+import { Enseignant } from './enseignant';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class EnseignantComponent {
 
   enseignantSelectionne: any = {};
 
-  enseignants :EnseignantModule[] =[];
+  enseignants :Enseignant[] =[];
 
   constructor(private enseignantService:EnseignantService){}
  
@@ -28,7 +28,7 @@ ngOnInit(){
 }
 
 getEnseignants(){
-  this.enseignantService.getEnseignants().subscribe((datas : EnseignantModule[])=>{
+  this.enseignantService.getEnseignants().subscribe((datas : Enseignant[])=>{
     this.enseignants =datas
 
     console.log(this.enseignants);

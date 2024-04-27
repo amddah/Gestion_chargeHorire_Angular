@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders  } from "@angular/common/http";
-import { EnseignantModule } from './enseignant.module';
 import { Observable } from 'rxjs/internal/Observable';
+import { Enseignant } from './enseignant';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,10 @@ export class EnseignantService {
   constructor(private http:HttpClient) { }
 
   getEnseignants(){
-    return this.http.get<EnseignantModule[]>(this.API_URL+this.ENDPOINT_Enseignant)
+    return this.http.get<Enseignant[]>(this.API_URL+this.ENDPOINT_Enseignant)
   }
 
-  addEnseignant(enseignant: EnseignantModule): Observable<any> {
+  addEnseignant(enseignant: Enseignant): Observable<any> {
     // URL de l'endpoint pour l'ajout d'un enseignant
     const url = this.API_URL + this.ENDPOINT_Enseignant;
 
