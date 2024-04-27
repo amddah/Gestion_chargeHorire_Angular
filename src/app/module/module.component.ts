@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModuleModule } from './module.module';
+import { ModuleService } from './module.service';
 
 @Component({
   selector: 'app-module',
@@ -7,20 +9,42 @@ import { Component } from '@angular/core';
 })
 export class ModuleComponent {
 
-  afficherFormulaire = false;
+  modules:ModuleModule[] =[];
 
+  afficherFormulaire = false;
+  moduleSelectionner :any;
+
+  constructor(private moduleService:ModuleService){}
+
+
+ngOnInit(){
+  this.getModules();
+}  
+
+getModules(){
+  this.moduleService.getModules().subscribe((data:ModuleModule[])=>{
+    this.modules =data;
+    console.log("Get modules Ok !"+this.modules);
+    
+  },(error)=>{
+    console.log("error en get modules"+error);
+    
+  })
+
+  
+}
+// Méthode pour afficher le formulaire d'ajout ou de modification
   toggleFormulaire() {
     this.afficherFormulaire = !this.afficherFormulaire;
   }
 
-
-  moduleSelectionner :any;
   update(module:any){
 
     this.afficherFormulaire = true;
 
     this.moduleSelectionner=module;
   }
+
 
   delete(module:any){
 
@@ -29,9 +53,5 @@ export class ModuleComponent {
   }
 
 
-  modules=[
-    {intitule:"JEE",vHcours :30,vHTd:2,vHTp:15,evaluation:2},
-    {intitule:"DB",vHcours :30,vHTd:2,vHTp:15,evaluation:2},
-    {intitule:"ASR",vHcours :30,vHTd:4,vHTp:15,evaluation:3},
-  ]
+  
 }

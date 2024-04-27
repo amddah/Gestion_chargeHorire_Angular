@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -21,7 +21,8 @@ export class ModuleModule {
 
   evaluation:BigInt
 
-  constructor(intitule:string,vHcours: BigInt,vHTd:BigInt,vHTp:BigInt,evaluation:BigInt) {
+  constructor(@Inject("intituleToken") intitule:string,@Inject("vHcoursToken") vHcours: BigInt,@Inject("vHTdToken") vHTd:BigInt,
+  @Inject("vHTpToken") vHTp:BigInt,@Inject("evaluationToken") evaluation:BigInt) {
     
     this.intitule=intitule;
 

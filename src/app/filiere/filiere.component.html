@@ -10,11 +10,8 @@
   
                 <!-- Default List group -->
                 <ul class="list-group">
-                  <li class="list-group-item">SMI</li>
-                  <li class="list-group-item">SMA</li>
-                  <li class="list-group-item">PC</li>
-                  <li class="list-group-item">A fourth item</li>
-                  <li class="list-group-item">And a fifth one</li>
+                  <li class="list-group-item" *ngFor="let filiere of filieres">{{filiere.nom}}</li>
+                 
                 </ul><!-- End Default List group -->
   
               </div>

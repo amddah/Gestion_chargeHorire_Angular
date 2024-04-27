@@ -1,0 +1,40 @@
+{
+    "enseignants": [
+    { "email": "abdo@gmail.com", "nom": "Abdo", "prenom": "Ahmed" },
+    { "email": "sarah@hotmail.com", "nom": "Sarah","prenom": "Dupont" },
+    { "email": "sarah@hotmail.com", "nom": "Sarah", "prenom": "Dupont"}
+    
+  ],
+  "modules":[
+    {
+      "intitule": "JEE",
+      "vHcours": 30,
+      "vHTd": 2,
+      "vHTp": 15,
+      "evaluation": 2
+    },
+    {
+      "intitule": "DB",
+      "vHcours": 30,
+      "vHTd": 2,
+      "vHTp": 15,
+      "evaluation": 2
+    },
+    {
+      "intitule": "ASR",
+      "vHcours": 30,
+      "vHTd": 4,
+      "vHTp": 15,
+      "evaluation": 3
+    }
+  ],
+  "filieres":[
+    { "nom": "SMI" },
+    { "nom": "SMA" },
+    { "nom": "PC" },
+    { "nom": "Bio" },
+    { "nom": "MIP" }
+  ]
+  
+
+}

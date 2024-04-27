@@ -4,28 +4,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EnseignantComponent } from './enseignant/enseignant.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NavComponent } from './nav/nav.component';
 import { FiliereComponent } from './filiere/filiere.component';
 import { ModuleComponent } from './module/module.component';
-import { FormElementsComponent } from './form-elements/form-elements.component';
-import { share } from 'rxjs';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EnseignantComponent,
-    NavComponent,
     FiliereComponent,
     ModuleComponent,
-    FormElementsComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

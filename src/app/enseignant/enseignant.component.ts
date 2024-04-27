@@ -1,5 +1,7 @@
 import { Component ,ViewChild} from '@angular/core';
 import { ModalComponent } from '../shared/componants/modal/modal.component';
+import { EnseignantService } from './enseignant.service';
+import { EnseignantModule } from './enseignant.module';
 
 
 @Component({
@@ -10,18 +12,35 @@ import { ModalComponent } from '../shared/componants/modal/modal.component';
 
 
 export class EnseignantComponent {
- 
+
   afficherFormulaire = false;
 
-  
-  enseignants = [
-    { email: 'abdo@gmail.com', nom: 'Abdo', prenom: 'Ahmed' },
-    { email: 'sarah@hotmail.com', nom: 'Sarah', prenom: 'Dupont' },
-    { email: 'sarah@hotmail.com', nom: 'Sarah', prenom: 'Dupont' }
-    
-  ];
-
   enseignantSelectionne: any = {};
+
+  enseignants :EnseignantModule[] =[];
+
+  constructor(private enseignantService:EnseignantService){}
+ 
+
+ngOnInit(){
+  this.getEnseignants();
+
+}
+
+getEnseignants(){
+  this.enseignantService.getEnseignants().subscribe((datas : EnseignantModule[])=>{
+    this.enseignants =datas
+
+    console.log(this.enseignants);
+    
+  },(error)=>{
+    console.log("error lors "+error);
+  }
+
+)
+}
+
+  
 
   @ViewChild(ModalComponent,{ static: true }) modalComponent!: ModalComponent;
 
