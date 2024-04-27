@@ -1,0 +1,98 @@
+<main id="main" class="main">
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Enseignant</h5>
+            
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th>
+                    <b>N</b>om
+                  </th>
+                  <th>Prenom</th>
+                  <th>Email</th>
+                  
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let enseignant of enseignants ">
+                  <td>{{enseignant.nom}}</td>
+                  <td>{{enseignant.prenom}}</td>
+                  <td>{{enseignant.email}}</td>
+                  
+                  <td>
+                    <button class="update" type="button" (click)="update(enseignant)"> <i class="bi bi-pencil-square" ></i></button>
+                    <button class="delete" type="button" (click)="afficherModal()"> <i class="bi bi-trash-fill"></i></button>
+                </td>
+                </tr>
+                
+      
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+        
+        <div class="add-button">
+          <button type="button" class="btn btn-primary" (click)="toggleFormulaire()"><i class="bi bi-plus-lg"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="afficherFormulaire" class="overlay"  >
+  <div class="form-element"  >
+ 
+
+  <div class="col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ajouter Enseignant</h5>
+
+        <!-- General Form Elements -->
+        <form>
+          
+          <div class="row mb-3">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" value="{{enseignantSelectionne.email}}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputText" class="col-sm-2 col-form-label">Nom</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{enseignantSelectionne.nom}}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="inputText" class="col-sm-2 col-form-label">Prenom</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{enseignantSelectionne.prenom}}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-10" id="btn-crud" >
+              <button type="reset" class="btn btn-outline-secondary" (click)="afficherFormulaire=false">Annuler</button>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+          </div>
+
+        </form><!-- End General Form Elements -->
+
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<app-modal></app-modal>
+
+</main><!-- End #main -->
