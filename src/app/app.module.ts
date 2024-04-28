@@ -8,6 +8,7 @@ import { FiliereComponent } from './filiere/filiere.component';
 import { ModuleComponent } from './module/module.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DashbaordComponent } from './dashbaord/dashbaord.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     EnseignantComponent,
     FiliereComponent,
     ModuleComponent,
+    DashbaordComponent,
     
   ],
   imports: [

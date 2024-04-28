@@ -34,7 +34,11 @@
     { "nom": "PC" },
     { "nom": "Bio" },
     { "nom": "MIP" }
+  ],
+ "intervention": [
+  {"email":"abdo@gmail.com","intitule":"ASR","vHcours":25,"vHTd":2,"vHTp":0},
+  {"email":"sarah@hotmail.com","intitule":"ASR","vHcours":5,"vHTd":2,"vHTp":15}
+
   ]
-  
 
 }
