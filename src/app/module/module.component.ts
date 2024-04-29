@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModuleService } from './module.service';
 import { Module } from './module';
+import { DeleteServiceService } from '../shared/componants/modal/delete-service.service';
 
 @Component({
   selector: 'app-module',
@@ -14,7 +15,7 @@ export class ModuleComponent {
   afficherFormulaire = false;
   moduleSelectionner :any;
 
-  constructor(private moduleService:ModuleService){}
+  constructor(private moduleService:ModuleService,private deleteService:DeleteServiceService){}
 
 
 ngOnInit(){
@@ -37,6 +38,7 @@ getModules(){
   toggleFormulaire() {
     this.afficherFormulaire = !this.afficherFormulaire;
   }
+ 
 
   update(module:any){
 
@@ -48,7 +50,15 @@ getModules(){
 
   delete(module:any){
 
-    console.log("delete:"+ module);
+    this.deleteService.confirmDelete().then((confirmed) => {
+      if (confirmed) {
+        console.log(" hhhh module"+module);
+        
+      }else{
+        console.log("hhhhhhhhhhhhhhhhh"+confirmed);
+        
+      }
+    });
     
   }
 

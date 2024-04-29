@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output,EventEmitter} from '@angular/core';
+import { DeleteServiceService } from './delete-service.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -7,14 +9,21 @@ import { Component } from '@angular/core';
 })
 export class ModalComponent {
 
-
+  @Input() usedComponant:any;
   afficheModal =false;
 
-  show() {
-    this.afficheModal = true;
+  
+  constructor(private activeModal: NgbActiveModal,private deleteService:DeleteServiceService){}
+
+
+
+  suprimme(): void {
+    this.deleteService.result='delete'; 
+    this.activeModal.close(); 
   }
 
-  hide() {
-    this.afficheModal = true;
+  hide(){
+    this.activeModal.close(); 
+    this.deleteService.result=''; 
   }
 }

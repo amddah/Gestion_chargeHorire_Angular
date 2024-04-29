@@ -36,8 +36,8 @@
     { "nom": "MIP" }
   ],
  "intervention": [
-  {"email":"abdo@gmail.com","intitule":"ASR","vHcours":25,"vHTd":2,"vHTp":0},
-  {"email":"sarah@hotmail.com","intitule":"ASR","vHcours":5,"vHTd":2,"vHTp":15}
+  {"email":"abdo@gmail.com","intitule":"ASR","vHcoursInterv":25,"vHTdInterv":2,"vHTpInterv":0},
+  {"email":"sarah@hotmail.com","intitule":"ASR","vHcoursInterv":5,"vHTdInterv":2,"vHTpInterv":15}
 
   ]
 

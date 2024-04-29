@@ -1,0 +1,11 @@
+.btn-view{
+    color: blue;
+    font-weight: bold;
+    border: 0px;
+    font-size: 1.2em;
+    background-color: #fff;
+}
+.btn-view:hover{
+cursor: pointer;
+}
+

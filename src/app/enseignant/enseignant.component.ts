@@ -2,6 +2,7 @@ import { Component ,ViewChild} from '@angular/core';
 import { ModalComponent } from '../shared/componants/modal/modal.component';
 import { EnseignantService } from './enseignant.service';
 import { Enseignant } from './enseignant';
+import { DeleteServiceService } from '../shared/componants/modal/delete-service.service';
 
 
 @Component({
@@ -13,13 +14,14 @@ import { Enseignant } from './enseignant';
 
 export class EnseignantComponent {
 
+  title :string ="EnseignantComponent";
   afficherFormulaire = false;
 
   enseignantSelectionne: any = {};
 
   enseignants :Enseignant[] =[];
 
-  constructor(private enseignantService:EnseignantService){}
+  constructor(private enseignantService:EnseignantService,private deleteService: DeleteServiceService){}
  
 
 ngOnInit(){
@@ -45,16 +47,14 @@ getEnseignants(){
   @ViewChild(ModalComponent,{ static: true }) modalComponent!: ModalComponent;
 
   
-  afficherModal() {
-    this.modalComponent.show();
-  }
+ 
   
 
   toggleFormulaire() {
     this.afficherFormulaire = !this.afficherFormulaire;
   }
 
-  
+ 
   
   update(enseignant: any) {
     this.afficherFormulaire=true;
@@ -63,7 +63,15 @@ getEnseignants(){
   }
 
   delete(enseignant:any){
-    console.log("delete:"+ enseignant);
+    this.deleteService.confirmDelete().then((confirmed) => {
+      if (confirmed) {
+        console.log(" hhhh chofooni"+enseignant);
+        
+      }else{
+        console.log("hhhhhhhhhhhhhhhhh"+confirmed);
+        
+      }
+    });
     
   }
 

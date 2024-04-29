@@ -1,21 +1,15 @@
-#modal{
 
-    position: absolute;
-    top: 100px;
-  width: 80%;
-   left: 40%;
+
+
+  ::ng-deep .my-class .modal-dialog { 
+    max-width: 35%;
+    max-height: 35%;
    
 }
 
-.overlay {
-    position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
-       z-index: 999; /* Assure que l'overlay est au-dessus de tout le reste */
-   }
+.overlay{
+    height: 20vh;
+}
 
    #btn-crud{
     display: flex;
@@ -25,4 +19,4 @@
 
 button{
     margin-left: 5px;
-}
+} 

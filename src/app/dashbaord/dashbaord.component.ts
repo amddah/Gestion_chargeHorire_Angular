@@ -14,11 +14,14 @@ export class DashbaordComponent {
   constructor(private dashboardService:DashboardService){}
 
 
+  ngOnInit(){
+    this.getInterventions();
+  }
+
   getInterventions(){
     this.dashboardService.getIntervention().subscribe((data:Intervention[])=>{
       this.interventions=data;
       console.log("Get intervention Ok!"+this.interventions);
-      
     },(error)=>{
       console.log("error en get intervention !"+error);
       

@@ -9,7 +9,7 @@ export class DashboardService {
 
   readonly API_URL = "http://localhost:4000" ;
 
-  readonly ENDPOINT_Intervention ="/interventions";
+  readonly ENDPOINT_Intervention ="/intervention";
 
   constructor(private http:HttpClient) { }
 

@@ -28,7 +28,7 @@
                   
                   <td>
                     <button class="update" type="button" (click)="update(enseignant)"> <i class="bi bi-pencil-square" ></i></button>
-                    <button class="delete" type="button" (click)="afficherModal()"> <i class="bi bi-trash-fill"></i></button>
+                    <button class="delete" type="button" (click)="delete(enseignant)"> <i class="bi bi-trash-fill"></i></button>
                 </td>
                 </tr>
                 
@@ -80,7 +80,7 @@
           </div>
           <div class="row mb-3">
             <div class="col-sm-10" id="btn-crud" >
-              <button type="reset" class="btn btn-outline-secondary" (click)="afficherFormulaire=false">Annuler</button>
+              <button type="reset" class="btn btn-outline-secondary" (click)="afficherFormulaire=false;enseignantSelectionne=null;">Annuler</button>
               <button type="submit" class="btn btn-primary">Ajouter</button>
             </div>
           </div>
@@ -93,6 +93,6 @@
   </div>
 </section>
 
-<app-modal></app-modal>
+<!-- <app-modal [usedComponant]="title"></app-modal> -->
 
 </main><!-- End #main -->
