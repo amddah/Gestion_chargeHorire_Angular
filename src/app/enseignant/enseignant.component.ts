@@ -23,9 +23,8 @@ export class EnseignantComponent {
   nom:string ='';
 
   prenom:string ='';
-
-  enseignantSelectionne: any = {};
-
+  emailDisabled: boolean = false;
+  
   enseignants :Enseignant[] =[];
 
   constructor(private enseignantService:EnseignantService,private deleteService: DeleteServiceService){}
@@ -59,14 +58,21 @@ getEnseignants(){
 
   toggleFormulaire() {
     this.afficherFormulaire = !this.afficherFormulaire;
+    this.email = ''; 
+    this.nom = ''; 
+    this.prenom = ''; 
+    this.emailDisabled = false;
   }
 
  
   
   update(enseignant: any) {
     this.afficherFormulaire=true;
+    this.emailDisabled =true;
     // Remplissez le formulaire avec les données de l'enseignant sélectionné
-    this.enseignantSelectionne = enseignant ;
+     this.email =enseignant.email;
+     this.nom = enseignant.nom;
+     this.prenom = enseignant.prenom;
   }
 
   delete(email:string){
@@ -75,22 +81,14 @@ getEnseignants(){
         this.enseignantService.deleteEnseignant(email).subscribe(
           
           response => {
-            if (response && response === 'done') {
-              // Suppression réussie, actualiser la page ou faire d'autres actions nécessaires
-              window.location.reload();
-            } else {
-              // La réponse du serveur n'est pas conforme aux attentes, afficher un message d'erreur
-              console.error('La réponse du serveur n\'est pas conforme :', response);
-            }
+             window.location.reload();
             
           },
           error => {
             console.error('Erreur lors de supprission de l\'enseignant', error);
-            window.location.reload();
-           
+            
           }
         );
-        console.log(" deleted "+email);
         
       }else{
         console.log("error"+confirmed);
@@ -107,16 +105,33 @@ getEnseignants(){
       prenom: this.prenom
     };
 
-    this.enseignantService.addEnseignant(newEnseignant).subscribe(
-      response => {
-        console.log('Enseignant ajouté avec succès', response);
-        this.getEnseignants();
-      },
-      error => {
-        console.error('Erreur lors de l\'ajout de l\'enseignant', error);
-       // window.location.reload();
-      }
-    );
+    if (!this.emailDisabled) {
+      this.enseignantService.addEnseignant(newEnseignant).subscribe(
+        response => {
+          console.log('Enseignant ajouté avec succès', response);
+         window.location.reload();
+          
+        },
+        error => {
+          console.error('Erreur lors de l\'ajout de l\'enseignant', error);
+         
+        }
+      );
+    } else {
+      this.enseignantService.updateEnseignant(newEnseignant).subscribe(
+        response => {
+          console.log('Enseignant est modifie avec succès', response);
+         window.location.reload();
+          
+        },
+        error => {
+          console.error('Erreur lors de modification de l\'enseignant', error);
+         
+        }
+      )
+      
+    }
+    
    
     
   }

@@ -40,7 +40,7 @@ export class EnseignantService {
 
   deleteEnseignant(email: string): Observable<any> {
     const url = `${this.API_URL}${this.ENDPOINT_Enseignant}/${email}`; // Ajouter l'email à l'URL
-    console.log(url);
+   
     
   return this.http.delete<any>(url).pipe(
     catchError(this.handleError)
@@ -49,6 +49,15 @@ export class EnseignantService {
   //return from( response);
   }
   
+
+  updateEnseignant(enseignant:Enseignant){
+    const url = `${this.API_URL}${this.ENDPOINT_Enseignant}/${enseignant.email}`;
+
+    return this.http.put<Enseignant>(url,enseignant).pipe(
+      catchError(this.handleError)
+    );
+
+  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
