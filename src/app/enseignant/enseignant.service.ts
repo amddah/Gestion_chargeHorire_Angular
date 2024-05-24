@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders  } from "@angular/common/http";
+import { HttpClient,HttpHeaders ,HttpErrorResponse } from "@angular/common/http";
 import { catchError } from 'rxjs/operators';
 import { from, throwError } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Enseignant } from './enseignant';
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,17 +33,33 @@ export class EnseignantService {
     };
 
     // Effectue la requête POST avec les données de l'enseignant
-    return this.http.post<any>(url, enseignant, httpOptions);
+    return this.http.post<any>(url, enseignant, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   deleteEnseignant(email: string): Observable<any> {
     const url = `${this.API_URL}${this.ENDPOINT_Enseignant}/${email}`; // Ajouter l'email à l'URL
     console.log(url);
     
-  const response= this.http.delete<any>(url).toPromise(); // Faire une requête DELETE vers l'URL construite
+  return this.http.delete<any>(url).pipe(
+    catchError(this.handleError)
+  );
 
-  return from( response);
+  //return from( response);
   }
   
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+  }
 
 }
