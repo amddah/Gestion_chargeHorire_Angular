@@ -28,7 +28,7 @@
                   
                   <td>
                     <button class="update" type="button" (click)="update(enseignant)"> <i class="bi bi-pencil-square" ></i></button>
-                    <button class="delete" type="button" (click)="delete(enseignant)"> <i class="bi bi-trash-fill"></i></button>
+                    <button class="delete" type="button" (click)="delete(enseignant.email)"> <i class="bi bi-trash-fill"></i></button>
                 </td>
                 </tr>
                 
@@ -58,30 +58,30 @@
         <h5 class="card-title">Ajouter Enseignant</h5>
 
         <!-- General Form Elements -->
-        <form>
+        <form (ngSubmit)="onSubmit()">
           
           <div class="row mb-3">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <label for="inputEmail" class="col-sm-2 col-form-label"  >Email</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" value="{{enseignantSelectionne.email}}">
+              <input type="email" class="form-control" value="{{enseignantSelectionne.email}}" name="email" [(ngModel)]="email">
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputText" class="col-sm-2 col-form-label">Nom</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" value="{{enseignantSelectionne.nom}}">
+              <input type="text" class="form-control" value="{{enseignantSelectionne.nom}}" name="nom" [(ngModel)]="nom">
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputText" class="col-sm-2 col-form-label">Prenom</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" value="{{enseignantSelectionne.prenom}}">
+              <input type="text" class="form-control" value="{{enseignantSelectionne.prenom}}" name="prenom" [(ngModel)]="prenom">
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-sm-10" id="btn-crud" >
               <button type="reset" class="btn btn-outline-secondary" (click)="afficherFormulaire=false;enseignantSelectionne=null;">Annuler</button>
-              <button type="submit" class="btn btn-primary">Ajouter</button>
+              <button type="submit" class="btn btn-primary" >Ajouter</button>
             </div>
           </div>
 

@@ -9,6 +9,7 @@ import { ModuleComponent } from './module/module.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
     AppRoutingModule,
     NgbModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
