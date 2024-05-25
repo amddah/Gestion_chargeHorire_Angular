@@ -1,3 +1,3 @@
 export interface Filiere {
-    nom:string;
+    nomFiliere:string;
 }

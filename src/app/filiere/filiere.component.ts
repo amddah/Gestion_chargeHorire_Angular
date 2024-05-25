@@ -10,10 +10,20 @@ import { Filiere } from './filiere';
 export class FiliereComponent {
 
   filieres :Filiere[] =[];
+  nomFiliere:string='';
+
+  afficherFormulaire =false;
+
   constructor(private filiereService:FiliereService){}
 
   ngOnInit(){
     this.getFilieres();
+  }
+
+ 
+  toggleFormulaire(){
+    this.afficherFormulaire=!this.afficherFormulaire;
+    this.nomFiliere='';
   }
 
   getFilieres(){
@@ -28,4 +38,23 @@ export class FiliereComponent {
   }
 
 
+  onSubmit(){
+
+    const newFiliere :Filiere={
+      nomFiliere:this.nomFiliere
+    }
+
+    this.filiereService.addFiliere(newFiliere).subscribe(
+      response => {
+        console.log('Filiere ajouté avec succès', response);
+       this.toggleFormulaire();
+       this.getFilieres();
+        
+      },
+      error => {
+        console.error('Erreur lors de l\'ajout de Filiere', error);
+       
+      }
+    )
+  }
 }

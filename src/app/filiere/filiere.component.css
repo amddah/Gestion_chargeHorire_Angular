@@ -1,0 +1,37 @@
+.add-button{
+    float: right;
+    margin-top: 8px;
+}
+.add-button button{
+    border-radius: 58px 58px 58px;
+    font-size: 1.5em;
+    font-weight: 600;
+    
+}
+.form-element{
+
+    position: absolute;
+    top: 100px;
+   width: 60%;
+   left: 40%;
+
+}
+#btn-crud{
+    display: flex;
+    justify-content: end;
+   width: 100%;
+}
+
+.col-sm-10 button{
+    margin: 5px;
+}
+
+.overlay {
+ position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    z-index: 999; /* Assure que l'overlay est au-dessus de tout le reste */
+}

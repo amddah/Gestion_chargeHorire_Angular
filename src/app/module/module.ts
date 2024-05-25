@@ -1,11 +1,13 @@
 export interface Module {
     intitule:string
 
-    vHcours :BigInt
+    vhcours :bigint
   
-    vHTd:BigInt
+    vhtd:bigint
   
-    vHTp: BigInt
+    vhtp: bigint
   
-    evaluation:BigInt
+    evaluation:number
+
+    nomFiliere:string
 }
