@@ -23,6 +23,8 @@ export class EnseignantComponent {
   nom:string ='';
 
   prenom:string ='';
+
+  page :number=1;
   emailDisabled: boolean = false;
   
   enseignants :Enseignant[] =[];

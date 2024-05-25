@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Intervention } from './intervention';
 import { DashboardService } from './dashboard.service';
+import { ModuleService } from "../module/module.service";
 
 @Component({
   selector: 'app-dashbaord',
@@ -11,11 +12,17 @@ export class DashbaordComponent {
 
   interventions :Intervention[]=[];
 
-  constructor(private dashboardService:DashboardService){}
+  countModules :number=0;
+
+  countEnseignant:number =0;
+  countFiliere:number =0;
+
+  constructor(private dashboardService:DashboardService, private moduleService:ModuleService){}
 
 
   ngOnInit(){
     this.getInterventions();
+    this.countModule();
   }
 
   getInterventions(){
@@ -26,5 +33,22 @@ export class DashbaordComponent {
       console.log("error en get intervention !"+error);
       
     })
+  }
+
+
+
+  countModule(){
+    this.dashboardService.getCount().subscribe(
+      (data)=>{
+        this.countModules=data.module;
+        this.countEnseignant =data.enseignant;
+        this.countFiliere =data.filiere;
+        console.log("get count Ok ",data);
+        
+      },(error)=>{
+        console.log("error en getCount"+error);
+        
+      }
+    )
   }
 }

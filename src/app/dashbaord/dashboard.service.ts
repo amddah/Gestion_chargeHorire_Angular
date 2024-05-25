@@ -7,7 +7,7 @@ import { Intervention } from './intervention';
 })
 export class DashboardService {
 
-  readonly API_URL = "http://localhost:4000" ;
+  readonly API_URL = "http://localhost:8010" ;
 
   readonly ENDPOINT_Intervention ="/intervention";
 
@@ -15,5 +15,10 @@ export class DashboardService {
 
   getIntervention(){
     return this.http.get<Intervention[]>(this.API_URL+this.ENDPOINT_Intervention);
+  }
+
+  getCount(){
+    const url =`${this.API_URL}${this.ENDPOINT_Intervention}/count`;
+    return this.http.get<any>(url);
   }
 }

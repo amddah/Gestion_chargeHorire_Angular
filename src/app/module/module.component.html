@@ -22,7 +22,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let module of modules">
+                    <tr *ngFor="let module of modules |paginate: { itemsPerPage: 5, currentPage: page } ">
                       <td>{{module.intitule}}</td>
                       <td>{{module.vhcours}}</td>
                       <td>{{module.vhtd}}</td>
@@ -36,7 +36,9 @@
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->
-    
+                <div class="paginate">
+                  <pagination-controls  previousLabel="Précédent" nextLabel="Suivant" (pageChange)="page = $event" ></pagination-controls>
+                </div>
               </div>
             </div>
     

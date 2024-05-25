@@ -28,11 +28,13 @@ export class ModuleComponent {
 
   modules:Module[] =[];
   fil:Filiere[] =[];
-
+  page = 1;
+ 
   afficherFormulaire = false;
   intituleDisabled=false;
   alertErreur =false;
 
+  
   constructor(
     private moduleService:ModuleService,
     private deleteService:DeleteServiceService,
@@ -44,7 +46,6 @@ export class ModuleComponent {
 ngOnInit(){
   this.getModules();
   this.getFilieres();
-  
 
 }  
 
@@ -76,7 +77,7 @@ getFilieres(){
     this.afficherFormulaire = !this.afficherFormulaire;
     this.intituleDisabled =false;
     this.alertErreur =false;
-    
+
     //vider la formulaire
     this.intitule='';
     this.vHcours="";

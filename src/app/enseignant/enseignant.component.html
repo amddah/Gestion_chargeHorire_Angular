@@ -21,7 +21,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let enseignant of enseignants ">
+                <tr *ngFor="let enseignant of enseignants |paginate: { itemsPerPage: 5, currentPage: page } ">
                   <td>{{enseignant.nom}}</td>
                   <td>{{enseignant.prenom}}</td>
                   <td>{{enseignant.email}}</td>
@@ -36,7 +36,9 @@
               </tbody>
             </table>
             <!-- End Table with stripped rows -->
-
+            <div class="paginate">
+              <pagination-controls  previousLabel="Précédent" nextLabel="Suivant" (pageChange)="page = $event" ></pagination-controls>
+            </div>
           </div>
         </div>
         
