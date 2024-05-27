@@ -10,7 +10,10 @@
   
                 <!-- Default List group -->
                 <ul class="list-group">
-                  <li class="list-group-item" *ngFor="let filiere of filieres">{{filiere.nomFiliere}}</li>
+                  <li class="list-group-item" *ngFor="let moduleFiliere of moduleFiliereCount">
+                    {{moduleFiliere.nomFiliere}} ({{moduleFiliere.count}})
+                   
+                   </li>
                  
                 </ul><!-- End Default List group -->
   

@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Filiere } from './filiere';
 import { Observable } from 'src/assets/vendor/tinymce/tinymce';
-
+import { ModuleFiliereCount } from "../filiere/module-filiere-count";
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +46,12 @@ export class FiliereService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  getCountModulesByFiliere(){
+    const url = `${this.API_URL}/modules/countByFiliere`;
+
+   return this.http.get<ModuleFiliereCount[]>(url);
   }
 
 }

@@ -95,7 +95,7 @@
                         <th scope="row"><a href="#">5525</a></th>
                         <td>{{intervention.email}}</td>
                         <td><a href="#" class="text-primary">{{intervention.intitule}}</a></td>
-                        <td>{{intervention.vHcoursInterv}}</td>
+                        <td>{{intervention.vhcoursInter }}</td>
                         <!-- <td><span class="badge bg-success">Approved</span></td> -->
 
                         <td><span class="btn-view"> <i class="bi bi-eye"></i></span></td>
@@ -105,11 +105,115 @@
                     </table>
 
                 </div>
-
+                
+                
+                </div>
+                <div class="add-button">
+                  <button type="button" class="btn btn-primary" (click)="getEnseiganant();affichermodalEns=true"><i class="bi bi-plus-lg"></i></button>
                 </div>
             </div><!-- End Recent Sales -->
       </div>
     </div>
   </div>
 </section>
+<!-- End Section intervention -->
+
+
+<section class="section" class="overlayEns" *ngIf="affichermodalEns">
+  <div class="row" id="itemGroup">
+    <div class="col-lg-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Selectionne le Enseignant</h5>
+
+          <!-- Default List group -->
+          <ul class="list-group">
+            <li class="list-group-item" >
+              <div class="row ">
+              <div class="col">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="intitule" name="intitule">
+                  <option value="Sélectionner le module"  selected>Sélectionner le module</option>
+                  <option *ngFor="let module of modules;" >
+                    {{ module.intitule ? module.intitule : 'No Intitule' }}
+                  </option>
+                </select>
+              </div>
+              </div>
+            </li>
+            <li class="list-group-item" *ngFor="let enseignant of enseignants" (click)="affichermodalEns=false;toggleFormulaire(enseignant.email);" >{{enseignant.nom}} {{enseignant.prenom}}</li>
+          </ul><!-- End Default List group -->  
+        </div>
+        
+      </div>
+
+    </div>
+
+   
+  </div>
+</section>
+<!-- from add intervention -->
+
+<section *ngIf="afficherFormulaireInter" class="overlay">
+
+  <div class="form-element">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ajouter Modules</h5>
+          <form (ngSubmit)="onSubmit()">
+            <div class="row mb-3">
+              <label for="inputEmail" class="col-sm-2 col-form-label"  >Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control"  name="email" [(ngModel)]="email" [disabled]="true" >
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-2 col-form-label">Intitule</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="intitule" name="intitule" [disabled]="true">
+              </div>
+            </div>
+            
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-2 col-form-label">VHcours</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="vhcoursInter " name="vhcoursInter">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-2 col-form-label">VHTd</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="vhtdInter" name="vhtdInter">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-2 col-form-label">VHTp</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="vhtpInter" name="vhtpInter">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-2 col-form-label">Evaluation</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="evaluationInter" name="evaluationInter">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-10" id="btn-crud">
+                <button type="reset" class="btn btn-outline-secondary" (click)="afficherFormulaireInter=false;">Annuler</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 </main>

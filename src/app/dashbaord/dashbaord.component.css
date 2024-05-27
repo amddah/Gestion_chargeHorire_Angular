@@ -8,4 +8,27 @@
 .btn-view:hover{
 cursor: pointer;
 }
+.list-group-item:hover{
 
+    background-color: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+}
+
+.overlayEns {
+    position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+       z-index: 999; /* Assure que l'overlay est au-dessus de tout le reste */
+   }
+   #itemGroup{
+
+    position: absolute;
+    top: 100px;
+   width: 80%;
+   left: 40%;
+
+}

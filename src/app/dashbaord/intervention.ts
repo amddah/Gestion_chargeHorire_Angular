@@ -1,14 +1,15 @@
 export interface Intervention {
 
-    email:string;
     
+    email:string;
+
     intitule:string
 
-    vHcoursInterv :BigInt
+    vhcoursInter :number;
   
-    vHTdInterv :BigInt
+    vhtdInter:number;
   
-    vHTpInterv : BigInt
+    evaluationInter: number;
   
-    evaluationInterv :BigInt
+    vhtpInter:number;
 }

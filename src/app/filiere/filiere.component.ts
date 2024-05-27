@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FiliereService } from './filiere.service';
 import { Filiere } from './filiere';
+import { count } from 'rxjs';
+import { ModuleFiliereCount } from "../filiere/module-filiere-count";
 
 @Component({
   selector: 'app-filiere',
@@ -10,6 +12,7 @@ import { Filiere } from './filiere';
 export class FiliereComponent {
 
   filieres :Filiere[] =[];
+  moduleFiliereCount:ModuleFiliereCount[]=[];
   nomFiliere:string='';
 
   afficherFormulaire =false;
@@ -17,7 +20,7 @@ export class FiliereComponent {
   constructor(private filiereService:FiliereService){}
 
   ngOnInit(){
-    this.getFilieres();
+    this.getCountModuleByFiliere();
   }
 
  
@@ -41,7 +44,8 @@ export class FiliereComponent {
   onSubmit(){
 
     const newFiliere :Filiere={
-      nomFiliere:this.nomFiliere
+      nomFiliere:this.nomFiliere,
+      
     }
 
     this.filiereService.addFiliere(newFiliere).subscribe(
@@ -56,5 +60,24 @@ export class FiliereComponent {
        
       }
     )
+  }
+
+  getCountModuleByFiliere(){
+
+    this.filiereService.getCountModulesByFiliere().subscribe(
+      (data:any)=>{
+
+        this.moduleFiliereCount =data.map((item:any) => ({
+          nomFiliere: item[0],
+          count: item[1]
+        }));;
+        console.log("count module by filiere work",this.moduleFiliereCount);
+        
+      },(error)=>{
+        console.log("error in module count ",error);
+        
+      }
+      )
+    
   }
 }
