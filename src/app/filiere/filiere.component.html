@@ -11,10 +11,11 @@
                 <!-- Default List group -->
                 <ul class="list-group">
                   <li class="list-group-item" *ngFor="let moduleFiliere of moduleFiliereCount">
+                    <a [routerLink]="['/filiereDetail', moduleFiliere.nomFiliere]">
                     {{moduleFiliere.nomFiliere}} ({{moduleFiliere.count}})
-                   
+                  </a>
                    </li>
-                 
+                  
                 </ul><!-- End Default List group -->
   
                 <div class="add-button">

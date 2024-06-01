@@ -1,0 +1,26 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>{{nomFiliere}}</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/filier">Filiere</a></li>
+            <li class="breadcrumb-item">Filiere Détail</li>
+            <li class="breadcrumb-item active">{{nomFiliere}}</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let nom of modules"> <!-- Utilisation des classes de grille Bootstrap pour la flexibilité -->
+                <!-- Card with an image on top -->
+                <div class="card">
+                    <img src="assets/img/coverCard.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{nom}}</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div><!-- End Card with an image on top -->
+            </div>
+        </div>
+    </section>
+</main>

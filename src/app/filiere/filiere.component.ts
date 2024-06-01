@@ -51,8 +51,9 @@ export class FiliereComponent {
     this.filiereService.addFiliere(newFiliere).subscribe(
       response => {
         console.log('Filiere ajouté avec succès', response);
+      
+        this.getCountModuleByFiliere();
        this.toggleFormulaire();
-       this.getFilieres();
         
       },
       error => {

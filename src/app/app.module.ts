@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FiliereDetailComponent } from './filiere-detail/filiere-detail.component';
+
 
 
 
@@ -21,6 +23,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FiliereComponent,
     ModuleComponent,
     DashbaordComponent,
+    FiliereDetailComponent,
+   
     
   ],
   imports: [

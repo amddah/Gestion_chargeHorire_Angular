@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Intervention } from './intervention';
 import { Observable } from 'rxjs';
+import { EnseignantIntervention } from "./enseignant-intervention";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class DashboardService {
 
   constructor(private http:HttpClient) { }
 
-  getIntervention(){
-    return this.http.get<Intervention[]>(this.API_URL+this.ENDPOINT_Intervention);
+  getIntervention(email:string){
+    return this.http.get<EnseignantIntervention[]>(this.API_URL+this.ENDPOINT_Intervention+'/'+email);
   }
 
   getCount(){
@@ -32,5 +33,11 @@ export class DashboardService {
       })
     };
     return this.http.post<any>(url,intervention)
+  }
+
+  getEnseignantIntervention(){
+    const url =`${this.API_URL}${this.ENDPOINT_Intervention}/enseignantModule`;
+
+    return this.http.get<any>(url);
   }
 }

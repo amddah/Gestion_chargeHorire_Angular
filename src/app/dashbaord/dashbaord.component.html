@@ -80,30 +80,74 @@
                 <div class="card-body">
                     <h5 class="card-title">Intervention </h5>
 
-                    <table class="table table-borderless datatable">
+                    <table class="table table-striped" *ngIf="!afficheDetail">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
+                      
                         <th scope="col">Enseignant</th>
                         <th scope="col">Modules</th>
                         <th scope="col">Total heures</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let intervention of interventions">
-                        <th scope="row"><a href="#">5525</a></th>
-                        <td>{{intervention.email}}</td>
-                        <td><a href="#" class="text-primary">{{intervention.intitule}}</a></td>
-                        <td>{{intervention.vhcoursInter }}</td>
+                        <tr *ngFor="let enseignant of enseignantModule">
+                        
+                        <td>{{enseignant[1]}} {{enseignant[2]}}</td>
+                        
+                          <td>
+                            <tr *ngFor="let module of enseignant[3].split(','); let last = last">
+                              <td><b>{{ module.trim() }} </b> </td>
+                              <td *ngIf="!last">,</td> <!-- Affiche une virgule après chaque module, sauf le dernier -->
+                            </tr>
+                        </td>
+                        
+                        <td>{{enseignant[4]}}</td>
                         <!-- <td><span class="badge bg-success">Approved</span></td> -->
 
-                        <td><span class="btn-view"> <i class="bi bi-eye"></i></span></td>
+                        <td><a class="btn-view" (click)="afficheDetail=true;getInterventions(enseignant[0]);"> <i class="bi bi-eye"></i></a></td>
+
                         </tr>
                        
+
+                    
+                      
                     </tbody>
                     </table>
 
+                     <!-- Bordered Table -->
+                     <div class="spacebetween" *ngIf="afficheDetail">
+                     <h3 > {{interventions[0].nom}} {{interventions[0].prenom}}</h3> 
+                    <h5 class="icon-close"> <i class="bi bi-x-lg" (click)="afficheDetail=false"></i></h5>
+                    </div>
+                     
+              <table class="table table-bordered" *ngIf="afficheDetail" aria-label="Close">
+              
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    
+                    <th scope="col">Module</th>
+                    <th scope="col">Cours (heures)</th>
+                    <th scope="col">Td (heures)</th>
+                    <th scope="col">Tp (heures)</th>
+                    <th scope="col">Evaluation (heures)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let intervention of interventions; let i = index;">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{intervention.module}}</td>
+                    <td>{{intervention.vhcoursInter}} </td>
+                    <td>{{intervention.vhtdInter}}</td>
+                    <td>{{intervention.vhtpInter}}</td>
+                    <td>{{intervention.evaluationInter}}</td>
+                    
+                  </tr>
+                  
+                </tbody>
+              </table>
+              <!-- End Bordered Table -->
                 </div>
                 
                 

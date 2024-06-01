@@ -54,4 +54,10 @@ export class FiliereService {
    return this.http.get<ModuleFiliereCount[]>(url);
   }
 
+  getModuleByFiliere(nomFiliere:string){
+    const url = `${this.API_URL}/modules/getModuleByfiliere/${nomFiliere}`;
+
+    return this.http.get<string[]>(url);
+  }
+
 }

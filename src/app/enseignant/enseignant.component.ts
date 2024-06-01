@@ -83,7 +83,7 @@ getEnseignants(){
         this.enseignantService.deleteEnseignant(email).subscribe(
           
           response => {
-             window.location.reload();
+            this.getEnseignants();
             
           },
           error => {
@@ -111,7 +111,9 @@ getEnseignants(){
       this.enseignantService.addEnseignant(newEnseignant).subscribe(
         response => {
           console.log('Enseignant ajouté avec succès', response);
-         window.location.reload();
+          this.toggleFormulaire();
+        this.getEnseignants();
+        
           
         },
         error => {
@@ -123,7 +125,8 @@ getEnseignants(){
       this.enseignantService.updateEnseignant(newEnseignant).subscribe(
         response => {
           console.log('Enseignant est modifie avec succès', response);
-         window.location.reload();
+          this.getEnseignants();
+          this.toggleFormulaire();
           
         },
         error => {

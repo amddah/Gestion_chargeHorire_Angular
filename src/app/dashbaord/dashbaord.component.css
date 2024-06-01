@@ -32,3 +32,12 @@ cursor: pointer;
    left: 40%;
 
 }
+
+.spacebetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-close{
+    cursor: pointer;
+}

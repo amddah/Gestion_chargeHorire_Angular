@@ -5,6 +5,7 @@ import { ModuleService } from "../module/module.service";
 import { EnseignantService } from "../enseignant/enseignant.service";
 import { Enseignant } from "../enseignant/enseignant";
 import { Module} from "../module/module";
+import { EnseignantIntervention } from "./enseignant-intervention";
 
 @Component({
   selector: 'app-dashbaord',
@@ -15,13 +16,14 @@ export class DashbaordComponent {
 
   intitule :string ='Sélectionner la filière';
   email :string ='';
+  enseignantModule:string[]=[];
   
   vhcoursInter :any;
   vhtdInter:any;
   evaluationInter: any;
   vhtpInter:any;
    
-  interventions :Intervention[]=[];
+  interventions :EnseignantIntervention[]=[];
   enseignants :Enseignant[] =[];
   modules:Module[] =[];
   enseignantSelectione :Enseignant|any;
@@ -35,6 +37,7 @@ export class DashbaordComponent {
 
   afficherFormulaireInter =false;
   affichermodalEns = false;
+  afficheDetail=false;
 
   constructor
   (
@@ -46,13 +49,15 @@ export class DashbaordComponent {
 
 
   ngOnInit(){
-    this.getInterventions();
+   
     this.countModule();
     this.getModules();
+    this.getEnseignantIntervention();
+    
   }
 //récupérer les interventions
-  getInterventions(){
-    this.dashboardService.getIntervention().subscribe((data:Intervention[])=>{
+  getInterventions(email:string){
+    this.dashboardService.getIntervention(email).subscribe((data:EnseignantIntervention[])=>{
       this.interventions=data;
       console.log("Get intervention Ok!"+this.interventions);
     },(error)=>{
@@ -105,7 +110,7 @@ export class DashbaordComponent {
     this.dashboardService.addIntervention(newIntervention).subscribe(
       response => {
         console.log('ajout de inter avec succès', response);
-        this.getInterventions();
+        this.getEnseignantIntervention();
         this.toggleFormulaire();
         
       },
@@ -137,6 +142,18 @@ export class DashbaordComponent {
     })
   
     
+  }
+
+  getEnseignantIntervention(){
+
+    this.dashboardService.getEnseignantIntervention().subscribe(
+
+      (response)=>{
+        this.enseignantModule =response;
+        console.log(this.enseignantModule );
+        
+      }
+    )
   }
   
   
