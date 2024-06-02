@@ -12,6 +12,9 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FiliereDetailComponent } from './filiere-detail/filiere-detail.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -24,6 +27,8 @@ import { FiliereDetailComponent } from './filiere-detail/filiere-detail.componen
     ModuleComponent,
     DashbaordComponent,
     FiliereDetailComponent,
+    LoginComponent,
+    RegisterComponent,
    
     
   ],
@@ -34,7 +39,8 @@ import { FiliereDetailComponent } from './filiere-detail/filiere-detail.componen
     SharedModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

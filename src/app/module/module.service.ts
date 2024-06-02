@@ -15,19 +15,18 @@ export class ModuleService {
   constructor(private http:HttpClient) { }
 
   getModules(){
-   return this.http.get<Module[]>(this.API_URL+this.ENDPOINT_Modules);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+   return this.http.get<Module[]>(this.API_URL+this.ENDPOINT_Modules,{headers});
   }
 
 
   addModule(module:Module):Observable<any>{
     const url =this.API_URL+this.ENDPOINT_Modules;
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.post<any>(url,module,httpOptions);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.post<any>(url,module,{headers});
   }
 
 
@@ -35,20 +34,26 @@ export class ModuleService {
 
     const url = `${this.API_URL}${this.ENDPOINT_Modules}/${intitule}`;
 
-    return this.http.delete<any>(url);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(url,{headers});
   }
 
   getModuleByIntitule(intitule:string) :Observable<any>{
 
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.API_URL}${this.ENDPOINT_Modules}/${intitule}`;
-    return this.http.get<Module>(url);
+    return this.http.get<Module>(url,{headers});
 
   }
 
   updateModule(module:Module):Observable<any>{
 
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.API_URL}${this.ENDPOINT_Modules}/${module.intitule}`;
-    return this.http.put<any>(url,module);
+    return this.http.put<any>(url,module,{headers});
   }
 
 }

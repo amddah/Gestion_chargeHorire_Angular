@@ -16,28 +16,31 @@ export class DashboardService {
   constructor(private http:HttpClient) { }
 
   getIntervention(email:string){
-    return this.http.get<EnseignantIntervention[]>(this.API_URL+this.ENDPOINT_Intervention+'/'+email);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<EnseignantIntervention[]>(this.API_URL+this.ENDPOINT_Intervention+'/'+email,{headers});
   }
 
   getCount(){
     const url =`${this.API_URL}${this.ENDPOINT_Intervention}/count`;
-    return this.http.get<any>(url);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(url,{headers});
   }
 
   addIntervention(intervention:Intervention):Observable<any>{
     const url =this.API_URL+this.ENDPOINT_Intervention;
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.post<any>(url,intervention)
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.post<any>(url,intervention,{headers})
   }
 
   getEnseignantIntervention(){
     const url =`${this.API_URL}${this.ENDPOINT_Intervention}/enseignantModule`;
-
-    return this.http.get<any>(url);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(url,{headers});
   }
 }

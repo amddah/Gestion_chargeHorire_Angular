@@ -18,13 +18,17 @@ export class EnseignantService {
   constructor(private http:HttpClient) { }
 
   getEnseignants(){
-    return this.http.get<Enseignant[]>(this.API_URL+this.ENDPOINT_Enseignant)
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Enseignant[]>(this.API_URL+this.ENDPOINT_Enseignant,{headers})
   }
 
   addEnseignant(enseignant: Enseignant): Observable<any> {
     // URL de l'endpoint pour l'ajout d'un enseignant
     const url = this.API_URL + this.ENDPOINT_Enseignant;
 
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     // Headers pour définir le type de contenu
     const httpOptions = {
       headers: new HttpHeaders({
@@ -33,7 +37,7 @@ export class EnseignantService {
     };
 
     // Effectue la requête POST avec les données de l'enseignant
-    return this.http.post<any>(url, enseignant, httpOptions).pipe(
+    return this.http.post<any>(url, enseignant,{headers}).pipe(
       catchError(this.handleError)
     );
   }
@@ -41,8 +45,10 @@ export class EnseignantService {
   deleteEnseignant(email: string): Observable<any> {
     const url = `${this.API_URL}${this.ENDPOINT_Enseignant}/${email}`; // Ajouter l'email à l'URL
    
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-  return this.http.delete<any>(url).pipe(
+  return this.http.delete<any>(url,{headers}).pipe(
     catchError(this.handleError)
   );
 
@@ -51,9 +57,11 @@ export class EnseignantService {
   
 
   updateEnseignant(enseignant:Enseignant){
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.API_URL}${this.ENDPOINT_Enseignant}/${enseignant.email}`;
 
-    return this.http.put<Enseignant>(url,enseignant).pipe(
+    return this.http.put<Enseignant>(url,enseignant,{headers}).pipe(
       catchError(this.handleError)
     );
 

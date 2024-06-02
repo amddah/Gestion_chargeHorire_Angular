@@ -18,20 +18,24 @@ export class FiliereService {
   constructor(private http:HttpClient) { }
 
   getFilieres(){
-    return this.http.get<Filiere[]>(this.API_URL+this.ENDPOINT_Filieres).pipe(
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Filiere[]>(this.API_URL+this.ENDPOINT_Filieres,{headers}).pipe(
       catchError(this.handleError)
     );
   }
   addFiliere(filiere: Filiere) {
     const url = `${this.API_URL}${this.ENDPOINT_Filieres}`;
 
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-    return this.http.post<any>(url, filiere, httpOptions).pipe(
+    return this.http.post<any>(url, filiere, {headers}).pipe(
       catchError(this.handleError)
     );
   }
@@ -51,13 +55,17 @@ export class FiliereService {
   getCountModulesByFiliere(){
     const url = `${this.API_URL}/modules/countByFiliere`;
 
-   return this.http.get<ModuleFiliereCount[]>(url);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+   return this.http.get<ModuleFiliereCount[]>(url,{headers});
   }
 
   getModuleByFiliere(nomFiliere:string){
     const url = `${this.API_URL}/modules/getModuleByfiliere/${nomFiliere}`;
 
-    return this.http.get<string[]>(url);
+    const token = localStorage.getItem('jwt'); // Assurez-vous que le token est stocké localement après login
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<string[]>(url,{headers});
   }
 
 }
